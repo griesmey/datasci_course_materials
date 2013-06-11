@@ -1,6 +1,9 @@
 import sys
 import json
 
+"""
+Get the sentiment from tweets of data file
+"""
 
 def create_sentiment(f_sentiment):
     """

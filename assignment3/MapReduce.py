@@ -14,13 +14,15 @@ class MapReduce:
 
     def execute(self, data, mapper, reducer):
         for line in data:
-            record = json.loads(line)
-            mapper(record)
+            mapper(self, line)
 
         for key in self.intermediate:
-            reducer(key, self.intermediate[key])
+            reducer(self, key, self.intermediate[key])
 
-        #jenc = json.JSONEncoder(encoding='latin-1')
-        jenc = json.JSONEncoder()
+        jenc = json.JSONEncoder(encoding='latin-1')
         for item in self.result:
             print jenc.encode(item)
+
+def execute(data, mapper, reducer):
+    mr = MapReduce()
+    mr.execute(data, mapper, reducer)
